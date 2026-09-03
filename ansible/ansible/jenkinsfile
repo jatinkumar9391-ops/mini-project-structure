@@ -1,0 +1,15 @@
+pipeline {
+  agent any
+  stages {
+    stage('Clone from Git') {
+      steps {
+        git branch: 'main', url: 'https://github.com/YOUR_USERNAME/devops-mini-project.git'
+      }
+    }
+    stage('Deploy with Ansible') {
+      steps {
+        sh 'ansible-playbook -i ansible/inventory.ini ansible/deploy.yml'
+      }
+    }
+  }
+}
